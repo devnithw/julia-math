@@ -30,7 +30,7 @@ HTML("<br><br>")
 # ╔═╡ f3f08661-e7de-4190-9d5f-6a9d71f8a37e
 md"""
 >## About me
->My name is Devnith Wijesinghe and I am a Bio-medical Engineering undergraduate at _University of Moratuwa_. I am interested in the areas of computational mathematics, machine learning and data science. I engage in writing articles and tutorials, hence I created this collection of notebooks while learning Julia.
+>My name is Devnith Wijesinghe and I am a biomedical engineering undergraduate at _University of Moratuwa_. I am interested in the areas of computational mathematics, machine learning and data science. I engage in writing articles and tutorials, hence I created this collection of notebooks while learning Julia.
 >
 >
 > Contact me at\
