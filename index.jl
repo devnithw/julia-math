@@ -16,7 +16,7 @@ md"""
 
 # ╔═╡ adae573b-64d4-47b5-a93a-f5ffffb5cfd1
 md"""
-## Mathematical modelling
+### Mathematical modelling
 """
 
 # ╔═╡ 40df6745-7818-46cb-98d2-c43b5d9481a4
