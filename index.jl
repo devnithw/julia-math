@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.9
+# v0.19.22
 
 using Markdown
 using InteractiveUtils
@@ -22,6 +22,8 @@ md"""
 # ╔═╡ 40df6745-7818-46cb-98d2-c43b5d9481a4
 md"""
 - [Modelling and predicting weather using a Markov model](https://devnithw.github.io/julia-tutorials/predicting-weather.html)
+
+- [Harmonic Oscillators and Solving ODEs](https://devnithw.github.io/julia-tutorials/harmonic-oscillator.html)
 """
 
 # ╔═╡ ac851061-296c-4668-ac2a-d189821aebdc
@@ -46,8 +48,9 @@ PLUTO_PROJECT_TOML_CONTENTS = """
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.7.3"
+julia_version = "1.8.5"
 manifest_format = "2.0"
+project_hash = "da39a3ee5e6b4b0d3255bfef95601890afd80709"
 
 [deps]
 """
