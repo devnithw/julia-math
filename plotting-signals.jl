@@ -118,11 +118,264 @@ But in the fourth graph, you cannot find two points with periodicity. The signal
 
 """
 
+# ╔═╡ 67f724b4-c762-4445-8dcb-4379337d911c
+md"
+
+## Real exponential signals
+"
+
+# ╔═╡ cf364a97-34b3-455e-af75-c8d47048b465
+md"""
+### Continuous time  Real exponential
+
+We will now plot 
+
+$x(t) = Ce^{a(t+t_0)}$
+
+where C and a are real numbers
+
+"""
+
+# ╔═╡ 1e789573-c6f5-4cf8-b0a1-2b99354d6050
+begin
+	# Parameters
+	C = 1.0
+	a1 = 1.1
+	t1 = 0.3
+
+	# Plot and layout
+	RC_exp1 = plot(t->C * exp(a1 * t + t1), -1, 1, framestyle=:origin, yticks=:plain, label=false, title="Graph shifted sideways by $(round(-t1/a1, digits = 4))")
+	vline!([-t1/a1], color=:lime,line=:dash, label=false)
+	plot!(size=(500,400))
+	
+end
+
+# ╔═╡ 40e0718e-4a55-4112-a5a0-873bde534bbe
+md"""
+The parameter $a1$ determines how fast the exponential rises and the time shift $t1$ moves the graph sideways.
+
+### Discrete time Real exponential
+
+When it comes to discrete time we can use the following format.
+
+$x[n] = Ce^{\beta n} = C\alpha^{n}$
+
+Depending on whether $|\alpha| < 1 or > 1$ the signal may change.
+The sign of $\alpha$ plays a huge role as well.
+"""
+
+# ╔═╡ 8979ca17-8fd3-442b-87cf-7d81222a3f6a
+begin
+	# Parameters
+	α1 = 1.08
+	α2 = 0.92
+	α3 = -1.08
+	α4 = -0.92
+
+	# Calculation
+	RD_exp1 = C * (α1 .^ n_array);
+	RD_exp2 = C * (α2 .^ n_array);
+	RD_exp3 = C * (α3 .^ n_array);
+	RD_exp4 = C * (α4 .^ n_array);
+	
+
+	# Plot
+	RD_p1 = plot(n_array, RD_exp1,line=:stem, marker=:circle, markersize=3, framestyle=:origin, yticks=:plain, label=false, title="Growing envelop |α| > 1, α > 0")
+	RD_p2 = plot(n_array, RD_exp2,line=:stem, marker=:circle, markersize=3, framestyle=:origin, yticks=:plain, label=false, title="Decaying envelop |α| < 1, α > 0")
+	RD_p3 = plot(n_array, RD_exp3,line=:stem, marker=:circle, markersize=3, framestyle=:origin, yticks=:plain, label=false, title="Alternating |α| > 1, α < 0")
+	RD_p4 = plot(n_array, RD_exp4,line=:stem, marker=:circle, markersize=3, framestyle=:origin, yticks=:plain, label=false, title="Alternating |α| < 1, α < 0")
+	
+	# Set layout and resize
+	plot(RD_p1, RD_p2, RD_p3, RD_p4, layout=(2,2))
+	plot!(size=(1100,1100))
+	
+end
+
+# ╔═╡ 3ec989e4-cfaa-4d0b-8785-3213b57adcc6
+md"""
+When |α| > 1 then the signal grows. It has a *growing envelop*.
+When |α| < 1 then the signal decays. It has a *decaying envelop*.
+
+When α < 0 then the signal alternates its sign.
+"""
+
+# ╔═╡ 46a759e3-76bb-4c3b-9a3f-d11b4a311162
+md"
+
+## Comlpex exponential signals
+"
+
+# ╔═╡ d6544e82-7d63-4fff-8db6-438afa1a2974
+md"""
+### Continuous time  complex exponential
+
+We will now plot 
+
+$x(t) = Ce^{a(t+t_0)}$
+
+where C and a are complex numbers. By using,
+
+$C = |C|e^{j\theta}$
+$a = r + jω$
+
+We can write $x(t)$ as,
+
+$x(t) = |C|e^{rt}[\cos{(\omega t + \theta)} + j\sin{(\omega t + \theta)}]$
+
+But since the $\sin$ component is imaginary we can only plot the $cos$ component as follows.
+
+"""
+
+# ╔═╡ 87fd7db5-25f9-4e5b-81e8-9f3ebb7cd74e
+begin
+	# Parameters
+	r = 0.3
+	ω5 = 3 * pi 
+	θ = 0
+
+	# Plot and layout
+	CC_exp1 = plot(t->C * exp(r * t) * cos(ω5 * t + θ), -2 * pi, 2 * pi, framestyle=:origin, yticks=:plain, label=false, title="Growing envelop")
+	
+end
+
+# ╔═╡ 474afa63-5f80-4409-aace-fbe7fef72ede
+md"""
+The signal is a combination of an exponential and a sinusoid. Depending on whether $r > 0 \quad or \quad r < 0$ the envelop of the exponential part is growing or decaying.
+"""
+
+# ╔═╡ 5149c85b-f8a1-4204-8282-0f0a278214e8
+md"""
+### Discrete time complex exponential
+
+We will now plot 
+
+$x[n] = C\alpha^{n}$
+
+where C and a are complex numbers. By using,
+
+$C = |C|e^{j\theta}$
+$a = |α|e^{j\omega}$
+
+We can write $x(t)$ as,
+
+$x[n] = |C||α|^{n}[\cos{(\omega n + \theta)} + j\sin{(\omega n + \theta)}]$
+
+Just like in the CT case we can only plot the $cos$ component as follows.
+
+"""
+
+# ╔═╡ 11dbb59a-423e-4e2f-a478-17252058c2db
+begin
+	# Parameters
+	α5 = 1.12
+	α6 = 0.92
+	ω6 = pi / 8
+
+	# Create a new time series array
+	n_array2 = [-20:1:20;]
+
+	# Calculation (Assuming phase shift = 0)
+	CD_exp1 = C * (α5 .^ n_array2) .* cos.(ω6 .* n_array2);
+	CD_exp2 = C * (α6 .^ n_array2) .* cos.(ω6 .* n_array2);
+
+	# Plot
+	CD_p1 = plot(n_array2, CD_exp1,line=:stem, marker=:circle, markersize=3, framestyle=:origin, yticks=:plain, label=false, title="Growing envelop |α| > 1, α > 0")
+	CD_p2 = plot(n_array2, CD_exp2,line=:stem, marker=:circle, markersize=3, framestyle=:origin, yticks=:plain, label=false, title="Decaying envelop |α| < 1, α > 0")
+	
+	# Set layout and resize
+	plot(CD_p1, CD_p2, layout=(1,2))
+	plot!(size=(1000,500))
+	
+end
+
+# ╔═╡ 3de655e4-9013-4a41-867c-5d01ff89905e
+md"""
+This signal is also a combination of an exponential and a sinusoid. Depending on whether $\alpha > 0 \quad or \quad \alpha < 0$ the envelop of the exponential part is growing or decaying.
+"""
+
+# ╔═╡ 8d2a6ba4-8043-4b48-86f3-1acadf704fb5
+HTML("<hr>")
+
+# ╔═╡ dd2944dd-b5e7-4cd1-8a55-ed1b9d3ab6d4
+md"""
+#### Periodicity
+
+Now here's the fun part!
+
+Let's consider only
+
+$e^{jωn}$
+
+In the CT case ($e^{jωt}$) the oscillation frequency increases as we increse ω. This is because the $e^{jωt}$ is periodic for all $\omega$.
+
+But remember in the DT case we found that there are certain ω values (which do not contain π) where there is no periodicity. It is the same for $e^{jωn}$.
+"""
+
+# ╔═╡ 55027eda-8b8a-4cd7-b0d4-5eb75752c448
+HTML("<hr>")
+
+# ╔═╡ d346a333-f659-40c5-b24d-5c4c71331d57
+md"""
+
+Also in DT case, the exponential frequency ω is the same as ω + 2π, ω + 4π ...etc.
+
+**Notice how the below two graphs are the same**
+"""
+
+# ╔═╡ 2ce94da2-4a57-4db5-abd7-71f28b186934
+begin
+	# Get new ω which is a 2π increment of ω6
+	ω7 = ω6 + 2 * pi
+
+	# Calculation (Assuming phase shift = 0)
+	CD_exp3 = C *  cos.(ω6 .* n_array2); # Using the old ω6 frequency
+	CD_exp4 = C *  cos.(ω7 .* n_array2); # Using the 2π increment
+
+	# Plot
+	CD_p3 = plot(n_array2, CD_exp3,line=:stem, marker=:circle, markersize=3, framestyle=:origin, yticks=:plain, label=false, title="ω6 = π / 8")
+	CD_p4 = plot(n_array2, CD_exp4,line=:stem, marker=:circle, markersize=3, framestyle=:origin, yticks=:plain, label=false, title="ω7 = π / 8 + 2π")
+	
+	# Set layout and resize
+	plot(CD_p3, CD_p4, layout=(1,2))
+	plot!(size=(1000,500))
+	
+end
+
+# ╔═╡ a828d073-996e-41ed-96c3-d04eed353e4f
+md"""
+Therefore in DT scenario the only effective ω values are between o and 2π. And notice how the maximum oscillation is obtained by ω = π.
+"""
+
+# ╔═╡ 83234c5f-b204-4d3c-8b79-47fbd2a9c473
+begin
+	# Take ω as pi to obtain maximum oscillation
+	ω8 = pi
+
+	# Calculation (Assuming phase shift = 0)
+	CD_exp5 = C * cos.(ω8 .* n_array2);
+
+	# Plot
+	CD_p5 = plot(n_array2, CD_exp5,line=:stem, marker=:circle, markersize=3, framestyle=:origin, yticks=:plain, label=false, title="ω8 = π")
+	
+	# Set layout and resize
+	plot(CD_p3, CD_p5, layout=(1,2))
+	plot!(size=(1000,500))
+	
+end
+
+# ╔═╡ da134b71-2fd4-4899-a371-980f4388bf71
+md"""
+The graph on the right depicts the maximum oscillation achievable in a discrete sinusoid.
+"""
+
 # ╔═╡ 9fb100e1-6690-4900-907b-27c7443785f4
 md"## Conclusion
 In this tutorial we ,
 - Plotted CT and DT versions of sinusoids with phase shift
 - Observed periodicity of sinusoids in CT and DT
+- Studied the behaviour of exopnential signals in CT and DT
+- Saw how exponentials vary behaviour depending on real or complex values
+- Observed the periodic nature of complex exponentials
 
 
 \
@@ -149,7 +402,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.8.5"
 manifest_format = "2.0"
-project_hash = "39d0d5866236472d6bc1a58c4e663ea8a2a2e057"
+project_hash = "d11d4fb0fd731734dc1c2ca399347ea5b41edbd7"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -1082,6 +1335,27 @@ version = "1.4.1+0"
 # ╟─9fb5711b-a3d3-409b-946f-b40d2ad5c980
 # ╠═acb5db94-8421-4407-882b-d5d580bfdcfa
 # ╟─74ff651f-be9f-4164-8318-b1ae375a68a8
+# ╟─67f724b4-c762-4445-8dcb-4379337d911c
+# ╟─cf364a97-34b3-455e-af75-c8d47048b465
+# ╠═1e789573-c6f5-4cf8-b0a1-2b99354d6050
+# ╟─40e0718e-4a55-4112-a5a0-873bde534bbe
+# ╠═8979ca17-8fd3-442b-87cf-7d81222a3f6a
+# ╟─3ec989e4-cfaa-4d0b-8785-3213b57adcc6
+# ╟─46a759e3-76bb-4c3b-9a3f-d11b4a311162
+# ╟─d6544e82-7d63-4fff-8db6-438afa1a2974
+# ╠═87fd7db5-25f9-4e5b-81e8-9f3ebb7cd74e
+# ╟─474afa63-5f80-4409-aace-fbe7fef72ede
+# ╟─5149c85b-f8a1-4204-8282-0f0a278214e8
+# ╠═11dbb59a-423e-4e2f-a478-17252058c2db
+# ╟─3de655e4-9013-4a41-867c-5d01ff89905e
+# ╟─8d2a6ba4-8043-4b48-86f3-1acadf704fb5
+# ╟─dd2944dd-b5e7-4cd1-8a55-ed1b9d3ab6d4
+# ╟─55027eda-8b8a-4cd7-b0d4-5eb75752c448
+# ╟─d346a333-f659-40c5-b24d-5c4c71331d57
+# ╠═2ce94da2-4a57-4db5-abd7-71f28b186934
+# ╟─a828d073-996e-41ed-96c3-d04eed353e4f
+# ╠═83234c5f-b204-4d3c-8b79-47fbd2a9c473
+# ╟─da134b71-2fd4-4899-a371-980f4388bf71
 # ╟─9fb100e1-6690-4900-907b-27c7443785f4
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
