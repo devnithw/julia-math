@@ -26,6 +26,17 @@ md"""
 - [Harmonic Oscillators and Solving ODEs](https://devnithw.github.io/julia-tutorials/harmonic-oscillator.html)
 """
 
+# ╔═╡ f449fdcb-1248-4135-82bc-37245fa02c99
+md"""
+### Signal processing
+"""
+
+# ╔═╡ 854666b6-a92d-4780-978c-844208569592
+md"""
+- [Plotting common continuous time and discrete time signals in Julia](https://devnithw.github.io/julia-tutorials/plotting-signals.html)
+
+"""
+
 # ╔═╡ ac851061-296c-4668-ac2a-d189821aebdc
 HTML("<br><br>")
 
@@ -60,6 +71,8 @@ project_hash = "da39a3ee5e6b4b0d3255bfef95601890afd80709"
 # ╟─0064de47-0917-4764-8e88-1d5e4214138e
 # ╟─adae573b-64d4-47b5-a93a-f5ffffb5cfd1
 # ╟─40df6745-7818-46cb-98d2-c43b5d9481a4
+# ╟─f449fdcb-1248-4135-82bc-37245fa02c99
+# ╟─854666b6-a92d-4780-978c-844208569592
 # ╟─ac851061-296c-4668-ac2a-d189821aebdc
 # ╟─f3f08661-e7de-4190-9d5f-6a9d71f8a37e
 # ╟─00000000-0000-0000-0000-000000000001
