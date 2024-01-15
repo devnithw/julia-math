@@ -1,6 +1,6 @@
-# Julia Tutorials
+# Julia Mathematical Modelling
 
-This is a collection of Pluto notebooks containing tutorials of mathematical applications, data science and machine learning written in **Julia programming language**.
+This is a collection of Pluto notebooks containing tutorials of mathematical applications, modelling and data science written in **Julia programming language**.
 
 ### How to follow
 
